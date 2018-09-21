@@ -1,0 +1,19 @@
+<seelog  type="asynctimer" asyncinterval="50000000">
+    <outputs formatid="common">
+        <filter levels="info">
+            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_info"  fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_info"/>
+        </filter>
+        <filter levels="warn">
+            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_warn" fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_warn"/>
+        </filter>
+        <filter levels="error">
+            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_error" fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_error"/>
+        </filter>
+        <filter levels="critical">
+            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_critical" fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_critical"/>
+        </filter>
+    </outputs>
+    <formats>
+        <format id="common" format="%Date(2006-01-02T15:04:05.000Z07:00) %Msg%n"/>
+    </formats>
+</seelog>

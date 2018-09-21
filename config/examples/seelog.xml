@@ -1,0 +1,18 @@
+<!-- seelog config examples -->
+<!-- https://github.com/cihub/seelog/wiki/Receiver-reference -->
+<seelog type="sync" minlevel="trace" maxlevel="critical">
+    <outputs formatid="onlymsg">
+        <filter levels="trace,debug,info,warn">
+            <!--rollingfile type="size" filename="log/test.log" maxsize="1024" formatid="onlymsg"/-->
+            <rollingfile type="date" filename="log/test.log" fullname="false" datepattern="2006-01-02 15:04" formatid="onlymsg"/>
+        </filter>
+        <filter levels="error,critical">
+                <rollingfile type="date" filename="log/error.log" fullname="false" datepattern="2006-01-02 15:04" formatid="error"/>
+        </filter>
+    </outputs>
+    <formats>
+        <format id="onlymsg" format="%Msg%n"/>
+        <format id="error" format="%Date %Time [%LEV] [%File:%Line] [%Func] %Msg%n"/>
+    </formats>
+</seelog>
+

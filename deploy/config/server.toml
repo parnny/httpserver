@@ -1,0 +1,7 @@
+title = "server toml"
+
+[http]
+server_ip_port = "0.0.0.0:8888"
+
+[seelog]
+config_path = "config/seelog.xml"
