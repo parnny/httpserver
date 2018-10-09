@@ -1,19 +1,14 @@
-<seelog  type="asynctimer" asyncinterval="50000000">
-    <outputs formatid="common">
-        <filter levels="info">
-            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_info"  fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_info"/>
+<seelog type="sync" minlevel="trace" maxlevel="critical">
+    <outputs formatid="onlymsg">
+        <filter levels="trace,debug,info,warn">
+            <rollingfile type="date" namemode="prefix" filename="./debug.log" fullname="false" datepattern="2006-01-02 15:04" formatid="fullmsg"/>
         </filter>
-        <filter levels="warn">
-            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_warn" fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_warn"/>
-        </filter>
-        <filter levels="error">
-            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_error" fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_error"/>
-        </filter>
-        <filter levels="critical">
-            <rollingfile type="date" filename="/%config_dir/logs/%appName_%serverType/%appName_%platformid_%serverid_%processidx_critical" fullname="true" datepattern="2006.01.02.log" maxrolls="0" archivetype="none" archivepath="/%config_dir/logs/pro_%appName_%serverType_archive_critical"/>
+        <filter levels="error,critical">
+            <rollingfile type="date" namemode="prefix" filename="./error.log" fullname="false" datepattern="2006-01-02 15:04" formatid="fullmsg"/>
         </filter>
     </outputs>
     <formats>
-        <format id="common" format="%Date(2006-01-02T15:04:05.000Z07:00) %Msg%n"/>
+        <format id="onlymsg" format="%Msg%n"/>
+        <format id="fullmsg" format="%Date %Time [%LEV] [%File:%Line] [%Func] %Msg%n"/>
     </formats>
 </seelog>

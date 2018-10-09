@@ -5,3 +5,22 @@ server_ip_port = "0.0.0.0:8888"
 
 [seelog]
 config_path = "config/examples/seelog.xml"
+
+[flashlog]
+logpath = "log"    # 存储log的目录
+threshold = 86400    # 区分消息是否标准, 小于86400(24小时), 使用标准配置, 否则使用不标准配置
+
+[flashlog.standard]
+timestep = 60
+rollsize = 1048576
+
+[flashlog.nonstandard]
+timestep = 120
+rollsize = 1024
+
+[flashlog.timertick]
+timeout_logfile = 5 #second,检测日志超时关闭
+empty_directory = 10 #second,检测空目录
+
+[flashlog.monitor]
+active = true

@@ -1,8 +1,11 @@
 package config
 
 import (
-	"sync"
+	"bytes"
+	"encoding/json"
+	"fmt"
 	"github.com/BurntSushi/toml"
+	"sync"
 )
 
 type ConfigManager struct {
@@ -14,6 +17,20 @@ func (cm *ConfigManager) Load(path string) {
 	if err != nil {
 		panic(err)
 	}
+	fmt.Println(cm)
+}
+
+func (cm *ConfigManager)String() string {
+	b, err := json.Marshal(cm.Config)
+	if err != nil {
+		return fmt.Sprintf("%+v", cm.Config)
+	}
+	var out bytes.Buffer
+	err = json.Indent(&out, b, "", "    ")
+	if err != nil {
+		return fmt.Sprintf("%+v", cm.Config)
+	}
+	return out.String()
 }
 
 var CfgInst *ConfigManager

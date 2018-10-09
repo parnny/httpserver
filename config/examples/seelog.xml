@@ -3,11 +3,11 @@
 <seelog type="sync" minlevel="trace" maxlevel="critical">
     <outputs formatid="onlymsg">
         <filter levels="trace,debug,info,warn">
-            <!--rollingfile type="size" filename="log/test.log" maxsize="1024" formatid="onlymsg"/-->
-            <rollingfile type="date" filename="log/test.log" fullname="false" datepattern="2006-01-02 15:04" formatid="onlymsg"/>
+            <rollingfile type="size" filename="log/test.log" maxsize="1024" formatid="onlymsg"/>
+            <!-- rollingfile type="date" namemode="prefix" filename="log/%appname/%msgtype/%date-out.log" fullname="false" datepattern="2006-01-02 15:04:05" formatid="onlymsg"/-->
         </filter>
         <filter levels="error,critical">
-                <rollingfile type="date" filename="log/error.log" fullname="false" datepattern="2006-01-02 15:04" formatid="error"/>
+                <rollingfile type="date" namemode="prefix" filename="log/%appname/%msgtype/%date-error.log" fullname="false" datepattern="2006-01-02 15:04:05" formatid="error"/>
         </filter>
     </outputs>
     <formats>

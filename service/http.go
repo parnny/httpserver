@@ -3,9 +3,8 @@ package service
 import (
 	"fmt"
 	"net/http"
-	"parnny.com/httpserver/config"
-	"parnny.com/httpserver/pipeline"
-	"parnny.com/httpserver/utils"
+	"parnny.com/datalog/config"
+	"parnny.com/datalog/pipeline"
 )
 
 func OnProcess(done chan bool, w http.ResponseWriter, r *http.Request)  {
@@ -14,13 +13,8 @@ func OnProcess(done chan bool, w http.ResponseWriter, r *http.Request)  {
 	bytes := make([]byte, len)
 	r.Body.Read(bytes)
 	body := string(bytes)
-	code, err := PMInst.OnProcess(body,r)
+	code, _ := PMInst.OnProcess(&body,r)
 	w.WriteHeader(code)
-	if code == 200 {
-		fmt.Fprintf(w,"hello world from goroutine(%s):success", utils.GetGID())
-	} else {
-		fmt.Fprintf(w,"hello world from goroutine(%s):error %s", utils.GetGID(), err)
-	}
 	done <- true
 }
 
@@ -28,6 +22,7 @@ func IndexHandler(w http.ResponseWriter, r *http.Request) {
 	done := make(chan bool)
 	go OnProcess(done,w,r)
 	<-done
+	close(done)
 }
 
 func Start() {
